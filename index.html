@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="es-CL">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#05131e">
+  <meta name="description" content="AtlantisCraft 2027: Los dioses volverán. Descubre el llamado de la beta privada.">
+  <meta name="robots" content="noindex,nofollow">
+  <title>AtlantisCraft 2027 | Los dioses volverán</title>
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/tridente.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+
+  <script defer src="js/config.js"></script>
+  <script defer src="js/audio.js"></script>
+  <script defer src="js/ambience.js"></script>
+  <script defer src="js/app.js"></script>
+</head>
+<body>
+  <!-- Escena encima del fondo oscuro del body para que la imagen siempre sea visible. -->
+  <div class="scene" aria-hidden="true">
+    <div class="scene-image" id="scene-image">
+      <!-- Brillo colocado sobre la antorcha del personaje; acompaña la imagen. -->
+      <div class="torch-effect" aria-hidden="true">
+        <span class="torch-halo"></span>
+        <span class="torch-flame"></span>
+        <span class="torch-spark"></span>
+        <span class="torch-spark torch-spark--two"></span>
+        <span class="torch-spark torch-spark--three"></span>
+      </div>
+    </div>
+    <div class="scene-overlay"></div>
+    <div class="scene-light"></div>
+    <div class="particles" id="particles"></div>
+  </div>
+
+  <div class="page-shell">
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="AtlantisCraft: ir al inicio">
+        <img class="brand-symbol" src="assets/icons/tridente.svg" alt="" width="30" height="30">
+        <span>ATLANTISCRAFT</span>
+      </a>
+
+      <div class="audio-controls" aria-label="Controles de audio">
+        <button id="music-toggle" class="icon-button" type="button" aria-label="Activar sonido ambiental" aria-pressed="false">
+          <span class="music-icon" aria-hidden="true">♫</span>
+          <span id="music-label">ACTIVAR SONIDO</span>
+        </button>
+        <div class="volume-control">
+          <label for="audio-volume">VOLUMEN</label>
+          <input id="audio-volume" type="range" min="0" max="100" step="5" value="60" aria-label="Volumen de la música y los efectos">
+          <output class="volume-value" id="volume-label" for="audio-volume">60%</output>
+        </div>
+        <button id="fx-toggle" class="icon-button icon-button--quiet" type="button" aria-pressed="true" aria-label="Desactivar efectos de interfaz">
+          FX <span id="fx-label">ON</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="hero" id="inicio">
+      <div class="hero-content">
+        <p class="eyebrow"><span aria-hidden="true">✦</span> UNA LEYENDA QUE AÚN NO HA TERMINADO <span aria-hidden="true">✦</span></p>
+        <img class="hero-emblem" src="assets/icons/tridente.svg" alt="" width="49" height="49">
+        <h1 aria-label="LOS DIOSES VOLVERÁN">
+          <span class="hero-title-line">LOS DIOSES</span>
+          <span class="hero-title-line hero-title-line--gold">VOLVERÁN</span>
+        </h1>
+        <div class="hero-divider" aria-hidden="true"><i></i><span>✧</span><i></i></div>
+        <p class="hero-lead">Un mundo olvidado. Un nuevo destino.</p>
+        <p class="hero-subtitle">Bajo las aguas duerme un reino que el tiempo no logró borrar.<br class="desktop-break"> En 2027, su historia volverá a escribirse.</p>
+
+        <div class="hero-actions">
+          <button id="open-beta" class="primary-button" type="button">
+            <span class="button-glow" aria-hidden="true"></span>
+            <span class="button-content">CONOCE LA BETA PRIVADA</span>
+          </button>
+        </div>
+        <p class="hero-note">✧ &nbsp; LOS PRIMEROS ELEGIDOS OIRÁN EL LLAMADO &nbsp; ✧</p>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <span>© 2027 ATLANTISCRAFT</span>
+      <span class="footer-rule" aria-hidden="true"></span>
+      <span>UN PROYECTO INDEPENDIENTE DE BLACORP SpA</span>
+      <a href="privacidad.html">PRIVACIDAD</a>
+    </footer>
+  </div>
+
+  <dialog id="beta-modal" aria-labelledby="beta-title" aria-describedby="beta-description">
+    <div class="modal-inner">
+      <button id="close-beta" class="modal-close" type="button" aria-label="Cerrar ventana">×</button>
+      <img class="modal-emblem" src="assets/icons/tridente.svg" alt="" width="42" height="42">
+      <p class="modal-kicker">ATLANTISCRAFT · ACCESO ANTICIPADO</p>
+      <h2 id="beta-title">El llamado de Atlantis</h2>
+      <p id="beta-description" class="modal-description">Los antiguos reinos despiertan. Solicita una invitación a la beta privada y sé parte del comienzo de la leyenda.</p>
+
+      <div id="preview-notice" class="notice" role="status">
+        Vista previa: las inscripciones todavía no están habilitadas. Puedes explorar el formulario, pero no se enviarán datos.
+      </div>
+
+      <form id="beta-form" novalidate>
+        <div class="form-field">
+          <label for="minecraft-name">USUARIO DE MINECRAFT JAVA</label>
+          <input id="minecraft-name" name="minecraft_username" type="text" required minlength="3" maxlength="16" pattern="[A-Za-z0-9_]{3,16}" autocomplete="off" placeholder="Ejemplo: Atlante2027">
+          <small>Entre 3 y 16 caracteres; letras, números y guion bajo.</small>
+        </div>
+
+        <div class="form-field">
+          <label for="email">CORREO ELECTRÓNICO</label>
+          <input id="email" name="email" type="email" required maxlength="254" autocomplete="email" placeholder="tucorreo@ejemplo.com">
+        </div>
+
+        <div class="check-row">
+          <input id="privacy" name="privacy_accepted" type="checkbox" required>
+          <label for="privacy">He leído y acepto la <a href="privacidad.html" target="_blank" rel="noopener noreferrer">política de privacidad</a>. Si soy menor de edad, cuento con autorización correspondiente.</label>
+        </div>
+
+        <div id="turnstile-container" class="turnstile-container" aria-label="Verificación de seguridad"></div>
+        <p id="form-message" class="form-message" role="status" aria-live="polite"></p>
+        <button id="submit-beta" class="submit-button" type="submit" disabled>ENVIAR SOLICITUD</button>
+      </form>
+      <p class="modal-footer">¿Consultas? <a href="mailto:Atlantiscraftcl@gmail.com">Atlantiscraftcl@gmail.com</a></p>
+    </div>
+  </dialog>
+
+  <audio id="ambient-audio" src="assets/audio/ambient-atlantis.ogg" preload="none" loop></audio>
+</body>
+</html>
